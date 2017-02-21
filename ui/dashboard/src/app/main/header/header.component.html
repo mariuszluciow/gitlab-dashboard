@@ -1,0 +1,42 @@
+<div class="header-separator">
+  <div class="brand">
+    <a href="javascript:;" class="fa fa-bars off-left visible-xs" data-toggle="off-canvas" data-move="ltr"></a>
+
+    <a href="index.html" class="navbar-brand text-white">
+      <img src="/favicon.ico" height="25" width="25" class="mg-b-xs" style="display: initial" />
+      <span class="heading-font">
+        GitLab <b>Rogue</b>
+      </span>
+    </a>
+
+  </div>
+
+  <form action="/logout" method="post" id="logout-form">
+    <input type="hidden" [(ngModel)]="csrf" name="_csrf" />
+    <ul class="nav navbar-nav navbar-right">
+      <li class="hidden-xs">
+        <a href="javascript:;">
+          <i class="fa fa-gear"></i>
+        </a>
+      </li>
+      <li class="quickmenu">
+
+        <a onclick="document.getElementById('logout-form').submit()">
+          <img src="{{user.userAuthentication.details.avatar_url}}" class="avatar pull-left img-circle" alt="user"
+               title="user">
+          <i class="fa fa-sign-out mg-l-sm"></i>
+        </a>
+      </li>
+    </ul>
+  </form>
+
+  <form class="navbar-form navbar-left hidden-xs" role="search" (ngSubmit)="gotoSearch()">
+    <div class="form-group">
+      <button class="btn btn-white no-border no-margin bg-none" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+      <input type="text" class="form-control no-border no-padding search" placeholder="Search Owned Groups"
+             [(ngModel)]="search" name="search" />
+    </div>
+  </form>
+</div>

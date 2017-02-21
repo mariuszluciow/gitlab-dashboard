@@ -1,0 +1,16 @@
+gitlab.page.size: 20
+feign.hystrix.enabled: false
+
+gitlab.url:
+applicationId:
+secret:
+
+security:
+  oauth2:
+    client:
+      clientId: ${applicationId}
+      clientSecret: ${secret}
+      accessTokenUri: ${gitlab.url}/oauth/token
+      userAuthorizationUri: ${gitlab.url}/oauth/authorize
+    resource:
+      userInfoUri: ${gitlab.url}/api/v3/user

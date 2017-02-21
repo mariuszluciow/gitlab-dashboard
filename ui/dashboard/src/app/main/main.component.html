@@ -1,0 +1,28 @@
+<!-- header menu -->
+<header class="header header-fixed navbar">
+  <my-header [user]="user"></my-header>
+</header>
+<!-- /header menu -->
+
+
+<section class="layout">
+
+  <!-- main content -->
+  <section class="main-content box-shadow">
+
+    <!-- content wrapper -->
+    <div class="content-wrap scrollable" role="main">
+      <div class="row">
+        <div class="col-md-12">
+          <router-outlet>
+
+          </router-outlet>
+        </div>
+      </div>
+    </div>
+    <!-- /content wrapper -->
+
+  </section>
+  <!-- /main content -->
+</section>
+

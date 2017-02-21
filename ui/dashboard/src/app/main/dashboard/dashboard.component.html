@@ -1,0 +1,18 @@
+<h2 class="mg-t-xs">{{name}}</h2>
+
+<div class="row flex-container">
+  <div *ngFor="let stream of streams" class="col-md-12 col-lg-6">
+
+
+    <div class="panel box-shadow">
+      <div class="panel-heading">
+        <a href="{{stream.project.web_url}}">
+          <i class="fa fa-external-link"></i>
+        </a>
+        {{stream.project.name}}
+      </div>
+      <div class="panel-body">
+        <my-stream [stream]="stream"></my-stream>
+      </div>
+    </div>
+  </div>
