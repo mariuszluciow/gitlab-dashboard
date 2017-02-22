@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+//import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent }   from './main/dashboard/dashboard.component';
@@ -25,7 +25,7 @@ import { StreamResolver }   from './main/dashboard/stream-resolver.service';
 import { AppRoutingModule } from './app-routing.module';
 import { ToasterModule } from 'angular2-toaster';
 
-import { BuildActionService }   from './main/build/build-action.service';
+//import { BuildActionService }   from './main/build/build-action.service';
 
 @NgModule({
   declarations: [
@@ -49,13 +49,13 @@ import { BuildActionService }   from './main/build/build-action.service';
   providers: [
     UserService,
     UserResolver,
-    CookieService,
+    //CookieService,
     GroupService,
     StreamService,
     StreamResolver,
     GroupSearchResolver,
-    GroupResolver,
-    BuildActionService
+    GroupResolver//,
+    //BuildActionService
   ],
   bootstrap: [AppComponent]
 })

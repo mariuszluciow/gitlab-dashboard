@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+//import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { User }   from './../../login/user.service';
 
@@ -17,8 +17,9 @@ export class HeaderComponent {
   csrf:string;
   search:string;
 
-  constructor(private cookieService:CookieService, private router:Router) {
-    this.csrf = cookieService.get('XSRF-TOKEN');
+  constructor(//private cookieService:CookieService,
+    private router:Router) {
+    //this.csrf = cookieService.get('XSRF-TOKEN');
   }
 
   gotoSearch():void {

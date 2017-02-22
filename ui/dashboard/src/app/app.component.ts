@@ -34,4 +34,4 @@ export class AppComponent implements OnDestroy {
 
 }
 
-export var PAGE_SIZE = 20;
+export const PAGE_SIZE = 20;
