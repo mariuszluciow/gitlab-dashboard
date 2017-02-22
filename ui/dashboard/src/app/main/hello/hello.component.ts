@@ -33,7 +33,7 @@ export class HelloComponent implements OnInit {
   private loadData(page:number):void {
     this.groupService.getAllGroups(page)
       .then(groups => {
-        this.groups = this.groups.concat(groups);
+        this.groups.push(...groups);
         this.hasNext = groups.length == PAGE_SIZE;
       });
   }

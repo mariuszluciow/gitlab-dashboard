@@ -43,7 +43,7 @@ export class GroupSearchComponent implements OnInit {
   private loadData(search:string, page:number):void {
     this.groupService.getGroups(search, page)
       .then(groups => {
-        this.groups = this.groups.concat(groups);
+        this.groups.push(...groups);
         this.hasNext = groups.length == PAGE_SIZE;
       });
   }
