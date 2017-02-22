@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { Stream } from './../stream.service'
-import { BuildService } from "./../../build/build.service";
+import { BuildActionService } from "./../../build/build-action.service";
 import { ToasterService } from 'angular2-toaster';
 
 import { Observable } from 'rxjs/Rx';
@@ -23,7 +23,7 @@ export class StreamComponent implements OnInit, OnDestroy {
   stream:Stream;
   private sub:any;
 
-  constructor(private buildService:BuildService, private streamService:StreamService, private toasterService:ToasterService) {
+  constructor(private buildActionService:BuildActionService, private streamService:StreamService, private toasterService:ToasterService) {
   }
 
   ngOnInit():void {
@@ -42,17 +42,17 @@ export class StreamComponent implements OnInit, OnDestroy {
   }
 
   retry(projectId:number, buildId:number):void {
-    this.buildService.retry(projectId, buildId)
+    this.buildActionService.retry(projectId, buildId)
       .then(() => this.toasterService.pop('success', 'Build Retried', 'The build was scheduled for retry'));
   }
 
   start(projectId:number, buildId:number):void {
-    this.buildService.start(projectId, buildId)
+    this.buildActionService.start(projectId, buildId)
       .then(() => this.toasterService.pop('success', 'Build Started', 'The build was scheduled'));
   }
 
   cancel(projectId:number, buildId:number):void {
-    this.buildService.cancel(projectId, buildId)
+    this.buildActionService.cancel(projectId, buildId)
       .then(() => this.toasterService.pop('success', 'Build Cancelled', 'The build was cancelled'));
   }
 

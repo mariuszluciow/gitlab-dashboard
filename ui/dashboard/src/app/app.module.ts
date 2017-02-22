@@ -25,7 +25,7 @@ import { StreamResolver }   from './main/dashboard/stream-resolver.service';
 import { AppRoutingModule } from './app-routing.module';
 import { ToasterModule } from 'angular2-toaster';
 
-import { BuildService }   from './main/build/build.service';
+import { BuildActionService }   from './main/build/build-action.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,7 @@ import { BuildService }   from './main/build/build.service';
     StreamResolver,
     GroupSearchResolver,
     GroupResolver,
-    BuildService
+    BuildActionService
   ],
   bootstrap: [AppComponent]
 })
