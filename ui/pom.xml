@@ -45,7 +45,7 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>publish</arguments>
+                            <arguments>run release</arguments>
                         </configuration>
                     </execution>
                 </executions>
@@ -53,7 +53,7 @@
         </plugins>
         <resources>
             <resource>
-                <directory>dashboard/dist</directory>
+                <directory>target/dist</directory>
                 <targetPath>META-INF/resources</targetPath>
             </resource>
         </resources>
