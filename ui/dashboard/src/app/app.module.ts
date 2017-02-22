@@ -21,10 +21,11 @@ import { GroupSearchResolver }   from './main/group/group-search-resolver.servic
 import { GroupResolver }   from './main/group/group-resolver.service';
 import { StreamService }   from './main/dashboard/stream.service';
 import { StreamResolver }   from './main/dashboard/stream-resolver.service';
-import { BuildService }   from './main/build/build.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ToasterModule } from 'angular2-toaster';
+
+import { BuildService }   from './main/build/build.service';
 
 @NgModule({
   declarations: [
