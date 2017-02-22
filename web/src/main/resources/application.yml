@@ -1,9 +1,9 @@
 gitlab.page.size: 20
 feign.hystrix.enabled: false
 
-gitlab.url: https://gitlab.tech.lastmile.com
-applicationId: ef875249c5c84b1e5a8b9fcdb01a5ff0ced097bc790ecf0573c0875dbe8d844a
-secret: 54567221ebd2445361420569b8e42907570f35398510fb273542f556fbf1a334
+gitlab.url:
+applicationId:
+secret:
 
 security:
   oauth2:

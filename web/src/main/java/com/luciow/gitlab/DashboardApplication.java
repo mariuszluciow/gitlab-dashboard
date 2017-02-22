@@ -29,7 +29,8 @@ public class DashboardApplication extends WebSecurityConfigurerAdapter {
         // @formatter:off
         http
                 .authorizeRequests()
-                .antMatchers("/index.html", "/home.html", "/", "/*bundle.js", "/*bundle.css").permitAll()
+                .antMatchers("/index.html", "/", "/*bundle.js", "/*bundle.css").permitAll()
+                .antMatchers("/fontawesome*", "/glyphicons*", "/favicon.ico").permitAll()
                 .antMatchers("/api/user").permitAll()
                 .anyRequest().authenticated()
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
