@@ -5,6 +5,7 @@ import com.luciow.gitlab.dashboard.client.gitlab.model.Build;
 import com.luciow.gitlab.dashboard.client.gitlab.model.Group;
 import com.luciow.gitlab.dashboard.client.gitlab.model.Pipeline;
 import com.luciow.gitlab.dashboard.client.gitlab.model.Project;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,15 +48,39 @@ public class GitLabApiFacade {
     }
 
     public void startBuild(int projectId, int buildId, String accessToken) {
-        gitLabApiClient.startBuild(projectId, buildId, "bearer " + accessToken);
+        try {
+            gitLabApiClient.startBuild(projectId, buildId, "bearer " + accessToken);
+        } catch (FeignException ex) {
+            if (ex.status() == 403) {
+                throw new ForbiddenException(ex);
+            } else {
+                throw ex;
+            }
+        }
     }
 
     public void retryBuild(int projectId, int buildId, String accessToken) {
-        gitLabApiClient.retryBuild(projectId, buildId, "bearer " + accessToken);
+        try {
+            gitLabApiClient.retryBuild(projectId, buildId, "bearer " + accessToken);
+        } catch (FeignException ex) {
+            if (ex.status() == 403) {
+                throw new ForbiddenException(ex);
+            } else {
+                throw ex;
+            }
+        }
     }
 
     public void cancelBuild(int projectId, int buildId, String accessToken) {
-        gitLabApiClient.cancelBuild(projectId, buildId, "bearer " + accessToken);
+        try {
+            gitLabApiClient.cancelBuild(projectId, buildId, "bearer " + accessToken);
+        } catch (FeignException ex) {
+            if (ex.status() == 403) {
+                throw new ForbiddenException(ex);
+            } else {
+                throw ex;
+            }
+        }
     }
 
     @Cacheable("project")

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { ToasterService } from 'angular2-toaster';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -42,7 +43,7 @@ export class StreamService {
 
   private gitLabUrl = '/api/gitlab';
 
-  constructor(private http:Http) {
+  constructor(private http:Http, private toasterService:ToasterService) {
   }
 
   getStreams(groupId:number):Promise<Stream[]> {
@@ -62,22 +63,34 @@ export class StreamService {
   retry(projectId:number, buildId:number):Promise<void> {
     return this.http.post(`/api/gitlab/projects/${projectId}/builds/${buildId}/retry`, null)
       .toPromise()
-      .catch(this.handleError);
+      .catch((error) => {
+        if (error.status == 403) {
+          this.toasterService.pop('warning', 'Missing Roles', 'You need write access to this project')
+        }
+        return Promise.reject(error.message || error);
+      });
   }
 
   start(projectId:number, buildId:number):Promise<void> {
     return this.http.post(`/api/gitlab/projects/${projectId}/builds/${buildId}/start`, null)
       .toPromise()
-      .catch(this.handleError);
+      .catch((error) => {
+        if (error.status == 403) {
+          this.toasterService.pop('warning', 'Missing Roles', 'You need write access to this project')
+        }
+        return Promise.reject(error.message || error);
+      });
   }
 
   cancel(projectId:number, buildId:number):Promise<void> {
     return this.http.post(`/api/gitlab/projects/${projectId}/builds/${buildId}/cancel`, null)
       .toPromise()
-      .catch(this.handleError);
+      .catch((error) => {
+        if (error.status == 403) {
+          this.toasterService.pop('warning', 'Missing Roles', 'You need write access to this project')
+        }
+        return Promise.reject(error.message || error);
+      });
   }
 
-  private handleError(error:any):Promise<any> {
-    return Promise.reject(error.message || error);
-  }
 }
