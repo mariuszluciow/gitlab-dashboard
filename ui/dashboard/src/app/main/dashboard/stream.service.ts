@@ -59,6 +59,24 @@ export class StreamService {
       .catch(this.handleError);
   }
 
+  retry(projectId:number, buildId:number):Promise<void> {
+    return this.http.post(`/api/gitlab/projects/${projectId}/builds/${buildId}/retry`, null)
+      .toPromise()
+      .catch(this.handleError);
+  }
+
+  start(projectId:number, buildId:number):Promise<void> {
+    return this.http.post(`/api/gitlab/projects/${projectId}/builds/${buildId}/start`, null)
+      .toPromise()
+      .catch(this.handleError);
+  }
+
+  cancel(projectId:number, buildId:number):Promise<void> {
+    return this.http.post(`/api/gitlab/projects/${projectId}/builds/${buildId}/cancel`, null)
+      .toPromise()
+      .catch(this.handleError);
+  }
+
   private handleError(error:any):Promise<any> {
     return Promise.reject(error.message || error);
   }

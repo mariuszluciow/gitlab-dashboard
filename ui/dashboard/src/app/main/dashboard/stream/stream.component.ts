@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { Stream } from './../stream.service'
-//import { BuildActionService } from "./../../build/build-action.service";
 import { ToasterService } from 'angular2-toaster';
 
 import { Observable } from 'rxjs/Rx';
@@ -23,8 +22,7 @@ export class StreamComponent implements OnInit, OnDestroy {
   stream:Stream;
   private sub:any;
 
-  constructor(//private buildActionService:BuildActionService,
-    private streamService:StreamService, private toasterService:ToasterService) {
+  constructor(private streamService:StreamService, private toasterService:ToasterService) {
   }
 
   ngOnInit():void {
@@ -42,19 +40,19 @@ export class StreamComponent implements OnInit, OnDestroy {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  //retry(projectId:number, buildId:number):void {
-  //  this.buildActionService.retry(projectId, buildId)
-  //    .then(() => this.toasterService.pop('success', 'Build Retried', 'The build was scheduled for retry'));
-  //}
-  //
-  //start(projectId:number, buildId:number):void {
-  //  this.buildActionService.start(projectId, buildId)
-  //    .then(() => this.toasterService.pop('success', 'Build Started', 'The build was scheduled'));
-  //}
-  //
-  //cancel(projectId:number, buildId:number):void {
-  //  this.buildActionService.cancel(projectId, buildId)
-  //    .then(() => this.toasterService.pop('success', 'Build Cancelled', 'The build was cancelled'));
-  //}
+  retry(projectId:number, buildId:number):void {
+    this.streamService.retry(projectId, buildId)
+      .then(() => this.toasterService.pop('success', 'Build Retried', 'The build was scheduled for retry'));
+  }
+
+  start(projectId:number, buildId:number):void {
+    this.streamService.start(projectId, buildId)
+      .then(() => this.toasterService.pop('success', 'Build Started', 'The build was scheduled'));
+  }
+
+  cancel(projectId:number, buildId:number):void {
+    this.streamService.cancel(projectId, buildId)
+      .then(() => this.toasterService.pop('success', 'Build Cancelled', 'The build was cancelled'));
+  }
 
 }
