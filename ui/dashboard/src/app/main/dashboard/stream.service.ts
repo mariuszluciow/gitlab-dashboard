@@ -93,4 +93,10 @@ export class StreamService {
       });
   }
 
+  private handleError(error:any):Promise<any> {
+    if (error.status == 403) {
+      this.toasterService.pop('warning', 'Missing Roles', 'The build was cancelled')
+    }
+    return Promise.reject(error.message || error);
+  }
 }
