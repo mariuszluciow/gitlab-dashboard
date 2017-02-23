@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-//import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { User }   from './../../login/user.service';
 
@@ -9,7 +9,7 @@ import { User }   from './../../login/user.service';
   selector: 'my-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   @Input()
   user:User;
@@ -17,9 +17,12 @@ export class HeaderComponent {
   csrf:string;
   search:string;
 
-  constructor(//private cookieService:CookieService,
-    private router:Router) {
-    //this.csrf = cookieService.get('XSRF-TOKEN');
+  constructor(private cookieService:CookieService,
+              private router:Router) {
+  }
+
+  ngOnInit():void {
+    this.csrf = this.cookieService.get('XSRF-TOKEN');
   }
 
   gotoSearch():void {

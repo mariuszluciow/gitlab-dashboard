@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
-//import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent }   from './main/dashboard/dashboard.component';
@@ -47,7 +47,7 @@ import { ToasterModule } from 'angular2-toaster';
   providers: [
     UserService,
     UserResolver,
-    //CookieService,
+    {provide: CookieService, useFactory: cookieServiceFactory}, //beacuese of https://github.com/salemdar/angular2-cookie/issues/37
     GroupService,
     StreamService,
     StreamResolver,
@@ -57,4 +57,8 @@ import { ToasterModule } from 'angular2-toaster';
   bootstrap: [AppComponent]
 })
 export class AppModule {
+}
+
+export function cookieServiceFactory() {
+  return new CookieService();
 }
