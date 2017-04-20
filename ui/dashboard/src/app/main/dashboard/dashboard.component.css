@@ -5,3 +5,8 @@
 .panel-body-pull-up {
   padding-bottom: 0;
 }
+
+.dragula {
+  min-height: 100px;
+  background-color: #eef1f4;
+}
