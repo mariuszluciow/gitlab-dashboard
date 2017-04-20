@@ -1,0 +1,8 @@
+<h2 class="mg-t-xs">{{name}}</h2>
+
+<div class="row flex-container">
+  <div *ngFor="let stream of streams" class="col-md-12 col-lg-6">
+    
+    <my-stream [stream]="stream"></my-stream>
+  </div>
+</div>

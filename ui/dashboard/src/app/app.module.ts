@@ -6,7 +6,9 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent }   from './main/dashboard/dashboard.component';
+import { GroupDashboardComponent }   from './main/dashboard/group-dashboard.component';
+import { NewDashboardComponent }   from './main/dashboard/new-dashboard.component';
+import { DashboardsComponent }   from './main/dashboard/dashboards.component';
 import { HeaderComponent }   from './main/header/header.component';
 import { GroupSearchComponent }   from './main/group/group-search.component';
 import { LoginComponent }   from './login/login.component';
@@ -24,12 +26,16 @@ import { StreamResolver }   from './main/dashboard/stream-resolver.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ToasterModule } from 'angular2-toaster';
+import { DashboardService } from './main/dashboard/dashboard.service';
+import { DashboardResolver } from './main/dashboard/dashboard-resolver.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent,
+    GroupDashboardComponent,
+    NewDashboardComponent,
+    DashboardsComponent,
     MainComponent,
     HeaderComponent,
     GroupSearchComponent,
@@ -47,12 +53,14 @@ import { ToasterModule } from 'angular2-toaster';
   providers: [
     UserService,
     UserResolver,
-    {provide: CookieService, useFactory: cookieServiceFactory}, //beacuese of https://github.com/salemdar/angular2-cookie/issues/37
+    {provide: CookieService, useFactory: cookieServiceFactory}, //because of https://github.com/salemdar/angular2-cookie/issues/37
     GroupService,
     StreamService,
     StreamResolver,
     GroupSearchResolver,
-    GroupResolver
+    GroupResolver,
+    DashboardService,
+    DashboardResolver
   ],
   bootstrap: [AppComponent]
 })

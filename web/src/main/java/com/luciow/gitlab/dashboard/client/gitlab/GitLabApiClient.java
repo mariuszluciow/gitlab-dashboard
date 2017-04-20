@@ -34,6 +34,9 @@ public interface GitLabApiClient {
     @RequestMapping(value = "/api/v3/groups/{id}/projects", method = RequestMethod.GET)
     List<Project> getProjects(@PathVariable("id") int groupId, @RequestParam("page") int page, @RequestParam("per_page") int size, @RequestParam("order_by") String orderBy, @RequestHeader("Authorization") String authorization);
 
+    @RequestMapping(value = "/api/v3/projects", method = RequestMethod.GET)
+    List<Project> getProjects(@RequestParam("page") int page, @RequestParam("per_page") int size, @RequestParam("search") String search, @RequestParam("simple") boolean simple, @RequestHeader("Authorization") String authorization);
+
     @RequestMapping(value = "/api/v3/projects/{projectId}/builds/{buildId}/play", method = RequestMethod.POST)
     void startBuild(@PathVariable("projectId") int projectId, @PathVariable("buildId") int buildId, @RequestHeader("Authorization") String authorization);
 

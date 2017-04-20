@@ -47,6 +47,10 @@ public class GitLabApiFacade {
         return gitLabApiClient.getProjects(groupId, page, size, "last_activity_at", "bearer " + accessToken);
     }
 
+    public List<Project> getProjects(String search, String accessToken) {
+        return gitLabApiClient.getProjects(0, 6, search, true, "bearer " + accessToken);
+    }
+
     public void startBuild(int projectId, int buildId, String accessToken) {
         try {
             gitLabApiClient.startBuild(projectId, buildId, "bearer " + accessToken);

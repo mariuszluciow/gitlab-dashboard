@@ -3,15 +3,11 @@ import { Http } from '@angular/http';
 import { ToasterService } from 'angular2-toaster';
 
 import 'rxjs/add/operator/toPromise';
+import {Project} from './dashboard.service';
 
 export class Stream {
-  project:{
-    id:number;
-    name:string;
-    description:string
-    web_url:string
-    builds_enabled:boolean
-  };
+  project:Project;
+  loading:boolean;
   stages:[{
     name:string;
     builds: [{

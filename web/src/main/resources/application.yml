@@ -1,9 +1,16 @@
 gitlab.page.size: 20
 feign.hystrix.enabled: false
 
-gitlab.url:
-applicationId:
-secret:
+spring:
+  jpa:
+    hibernate.ddl-auto: update
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://${db.url:localhost:5432}/${db.name:postgres}
+    username: ${db.username:postgres}
+    password: ${db.password:postgres}
+
+server.session.timeout: 864000	#ten days
 
 security:
   oauth2:

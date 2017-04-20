@@ -7,10 +7,10 @@ import { Stream } from './stream.service'
 
 @Component({
   moduleId: module.id,
-  selector: 'dashboard',
-  templateUrl: './dashboard.component.html'
+  selector: 'group-dashboard',
+  templateUrl: './group-dashboard.component.html'
 })
-export class DashboardComponent implements OnInit {
+export class GroupDashboardComponent implements OnInit {
 
   streams:Stream[];
   name:String;

@@ -15,8 +15,13 @@
     <input type="hidden" [(ngModel)]="csrf" name="_csrf" />
     <ul class="nav navbar-nav navbar-right">
       <li class="hidden-xs">
-        <a href="javascript:;">
-          <i class="fa fa-gear"></i>
+        <a [routerLink]="['/dashboards']">
+          Dashboards <i class="fa fa-dashboard"></i>
+        </a>
+      </li>
+      <li class="hidden-xs">
+        <a [routerLink]="['/dashboards/new']">
+          New Dashboard <i class="fa fa-plus"></i>
         </a>
       </li>
       <li class="quickmenu">

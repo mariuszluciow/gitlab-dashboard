@@ -1,0 +1,6 @@
+rogue.db.file: ./target/roguedb
+
+spring:
+  datasource.url: jdbc:h2:file:${rogue.db.file}
+  jpa:
+    hibernate.ddl-auto: create-drop

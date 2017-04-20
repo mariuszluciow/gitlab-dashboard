@@ -1,60 +1,77 @@
-<div *ngIf="stream.project.builds_enabled" class="row-streams flex-container">
-  <div *ngFor="let stage of stream.stages; let lastStage = last" [ngClass]="{
+<div class="panel box-shadow">
+  <div class="panel-heading">
+    <a href="{{stream.project.web_url}}">
+      <i class="fa fa-external-link"></i>
+    </a>
+    {{stream.project.name}}
+  </div>
+  <div class="panel-body">
+
+    <div *ngIf="stream.project.builds_enabled" class="row-streams flex-container">
+      <div *ngFor="let stage of stream.stages; let lastStage = last" [ngClass]="{
           'col-md-12': stream.stages.length === 1,
           'col-md-6': stream.stages.length === 2,
           'col-md-4': stream.stages.length === 3,
           'col-md-3': stream.stages.length === 4,
           'col-md-2': stream.stages.length > 5
           }" class="pd-l-xs pd-r-xs">
-    <div class="text-muted mg-b-xs">
-      <i class="fa fa-forward pull-right" *ngIf="!lastStage"></i>
-      <span>{{stage.name}}</span>
-    </div>
+        <div class="text-muted mg-b-xs">
+          <i class="fa fa-forward pull-right" *ngIf="!lastStage"></i>
+          <span>{{stage.name}}</span>
+        </div>
 
-    <div *ngFor="let build of stage.builds">
+        <div *ngFor="let build of stage.builds">
 
 
-      <div class="progress box-shadow build-progress">
-        <div class="progress-bar progress-bar-striped"
-             [ngClass]="{'progress-bar-success': build.status === 'success',
+          <div class="progress box-shadow build-progress">
+            <div class="progress-bar progress-bar-striped"
+                 [ngClass]="{'progress-bar-success': build.status === 'success',
               'progress-bar-warning': build.status === 'canceled' || build.status === 'pending',
               'progress-bar-danger': build.status === 'failed',
               'active': build.status === 'running',
               'progress-bar-default': build.status === 'created' || build.status === 'skipped'
               }"
-             role="progressbar"
-             aria-valuemin="0" aria-valuemax="100"
-             [style.width]="'100%'"
-             title="{{build.name}}">
+                 role="progressbar"
+                 aria-valuemin="0" aria-valuemax="100"
+                 [style.width]="'100%'"
+                 title="{{build.name}}">
 
 
-          <a class="text-white pull-left mg-l-sm build-link text-left" target="_blank"
-             href="{{stream.project.web_url}}/builds/{{build.id}}">
-            <i class="fa fa-external-link-square"></i>
-            {{build.name}}
-          </a>
+              <a class="text-white pull-left mg-l-sm build-link text-left" target="_blank"
+                 href="{{stream.project.web_url}}/builds/{{build.id}}">
+                <i class="fa fa-external-link-square"></i>
+                {{build.name}}
+              </a>
 
-          <a (click)="cancel(stream.project.id, build.id)" class="text-white pull-right mg-r-sm"
-             *ngIf="build.status == 'running'">
-            <i class="fa fa-pause"></i>
-          </a>
+              <a (click)="cancel(stream.project.id, build.id)" class="text-white pull-right mg-r-sm"
+                 *ngIf="build.status == 'running'">
+                <i class="fa fa-pause"></i>
+              </a>
 
-          <a (click)="start(stream.project.id, build.id)" class="text-white pull-right mg-r-sm"
-             *ngIf="build.status == 'skipped'">
-            <i class="fa fa-play"></i>
-          </a>
+              <a (click)="start(stream.project.id, build.id)" class="text-white pull-right mg-r-sm"
+                 *ngIf="build.status == 'skipped'">
+                <i class="fa fa-play"></i>
+              </a>
 
-          <a (click)="retry(stream.project.id, build.id)" class="text-white pull-right mg-r-sm"
-             *ngIf="build.status == 'success' || build.status == 'failed'|| build.status == 'canceled'">
-            <i class="fa fa-refresh"></i>
-          </a>
+              <a (click)="retry(stream.project.id, build.id)" class="text-white pull-right mg-r-sm"
+                 *ngIf="build.status == 'success' || build.status == 'failed'|| build.status == 'canceled'">
+                <i class="fa fa-refresh"></i>
+              </a>
+            </div>
+          </div>
         </div>
+        <div class="stage-separator"></div>
       </div>
     </div>
-    <div class="stage-separator"></div>
-  </div>
-</div>
 
-<div *ngIf="!stream.project.builds_enabled" class="text-muted text-center">Builds are disabled</div>
-<div *ngIf="!stream.stages || stream.stages.length == 0" class="text-muted text-center">There are no builds yet
+    <div *ngIf="stream.loading" class="text-muted text-center">
+      Loading <i class="fa fa-spinner fa-pulse fa-fw"></i>
+    </div>
+    <div *ngIf="!stream.loading">
+      <div *ngIf="!stream.stages || stream.stages.length == 0" class="text-muted text-center">There are no builds yet
+      </div>
+      <div *ngIf="!stream.project.builds_enabled" class="text-muted text-center">Builds are disabled</div>
+    </div>
+
+  </div>
 </div>

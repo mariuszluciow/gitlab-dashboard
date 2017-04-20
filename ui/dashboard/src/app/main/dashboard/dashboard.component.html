@@ -1,18 +1,50 @@
-<h2 class="mg-t-xs">{{name}}</h2>
-
-<div class="row flex-container">
-  <div *ngFor="let stream of streams" class="col-md-12 col-lg-6">
-
-
-    <div class="panel box-shadow">
+<div class="row pd-b-md">
+  <div class="col-sm-12">
+    <div class="input-group">
+      <input class="form-control input-lg" type="text" placeholder="Dashboard Name"
+             [(ngModel)]="dashboard.name">
+      <span class="input-group-btn">
+        <button class="btn btn-default btn-lg" type="button" (click)="save()">
+          <i class="fa fa-save"></i>
+        </button>
+        <button class="btn btn-default btn-lg" type="button" (click)="projectsPanel()">
+          <i class="fa fa-plus"></i>
+        </button>
+      </span>
+    </div>
+    <div class="panel box-shadow animated fadeIn" *ngIf="showProjectsPanel">
       <div class="panel-heading">
-        <a href="{{stream.project.web_url}}">
-          <i class="fa fa-external-link"></i>
-        </a>
-        {{stream.project.name}}
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">
+            <i class="fa fa-search"></i>
+          </span>
+          <input type="text" class="form-control" placeholder="Project Name" aria-describedby="basic-addon1"
+                 #searchBox id="search-box" (keyup)="search(searchBox.value)">
+        </div>
       </div>
-      <div class="panel-body">
-        <my-stream [stream]="stream"></my-stream>
+      <div class="panel-body panel-body-pull-up">
+        <div *ngFor="let project of projects | async">
+          <p (click)="addProject(project)">
+            <button class="btn btn-sm"><i class="fa fa-plus"></i></button>
+            {{project.name}}
+          </p>
+        </div>
+      </div>
+      <div class="panel-footer text-center panel-footer-pull-up">
+        <a href="javascript:;" (click)="projectsPanel()">
+          <i class="fa fa-arrow-up"></i>
+        </a>
       </div>
     </div>
   </div>
+</div>
+
+
+<div class="row flex-container">
+  <div *ngFor="let stream of firstCol" class="col-md-12 col-lg-6">
+    <my-stream [stream]="stream"></my-stream>
+  </div>
+  <div *ngFor="let stream of secondCol" class="col-md-12 col-lg-6">
+    <my-stream [stream]="stream"></my-stream>
+  </div>
+</div>
