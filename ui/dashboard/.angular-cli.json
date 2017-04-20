@@ -24,6 +24,7 @@
         "../node_modules/ng2-slim-loading-bar/style.css",
         "../node_modules/angular2-toaster/toaster.css",
         "../node_modules/animate.css/animate.min.css",
+        "../node_modules/dragula/dist/dragula.css",
         "styles/styles.css"
       ],
       "scripts": [],

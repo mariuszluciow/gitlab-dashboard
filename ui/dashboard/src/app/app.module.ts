@@ -28,6 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ToasterModule } from 'angular2-toaster';
 import { DashboardService } from './main/dashboard/dashboard.service';
 import { DashboardResolver } from './main/dashboard/dashboard-resolver.service';
+import {DragulaModule} from "ng2-dragula/index";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { DashboardResolver } from './main/dashboard/dashboard-resolver.service';
     HttpModule,
     AppRoutingModule,
     SlimLoadingBarModule.forRoot(),
-    ToasterModule
+    ToasterModule,
+    DragulaModule
   ],
   providers: [
     UserService,

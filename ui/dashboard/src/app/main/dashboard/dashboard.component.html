@@ -40,11 +40,22 @@
 </div>
 
 
-<div class="row flex-container">
-  <div *ngFor="let stream of firstCol" class="col-md-12 col-lg-6">
-    <my-stream [stream]="stream"></my-stream>
+<div class="row">
+  <div class="col-md-6">
+    <div class="row flex-container" [dragula]='"first-bag"' [dragulaOptions]="{removeOnSpill: true}"
+         [dragulaModel]='firstCol'>
+      <div *ngFor="let stream of firstCol" class="col-md-12">
+        <my-stream [stream]="stream"></my-stream>
+      </div>
+    </div>
   </div>
-  <div *ngFor="let stream of secondCol" class="col-md-12 col-lg-6">
-    <my-stream [stream]="stream"></my-stream>
+  <div class="col-md-6">
+    <div class="row flex-container" [dragula]='"first-bag"' [dragulaOptions]="{removeOnSpill: true}"
+         [dragulaModel]='secondCol'>
+      <div *ngFor="let stream of secondCol" class="col-md-12">
+        <my-stream [stream]="stream"></my-stream>
+      </div>
+    </div>
   </div>
 </div>
+
